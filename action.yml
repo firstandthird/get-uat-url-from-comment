@@ -1,0 +1,23 @@
+name: UAT url from issue comment
+author: firstandthird
+branding:
+  color: blue
+  icon: message-square
+description: Gets a uat/preview url from issue comments
+inputs:
+  issue:
+    descirption: Issue to search for urls in comments
+    required: true
+  search-domain:
+    descirption: Base domain to search for (subdomains will be matched)
+    required: true
+  github-token:
+    description: GitHub token
+    required: false
+    default: ${{ github.token }}
+outputs:
+  url:
+    description: The first found url in comments. Will be empty if none found.
+runs:
+  using: node16
+  main: index.js
