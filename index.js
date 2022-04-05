@@ -2,7 +2,6 @@ import { getInput, info, setOutput } from "@actions/core";
 import { GitHub, context } from "@actions/github";
 
 async function Runner() {
-  const issue = getInput("issue");
   const token = getInput("github-token");
   const searchDomain = getInput("search-domain");
 
@@ -13,7 +12,7 @@ async function Runner() {
   const { data: comments } = await octokit.issues.listComments({
     owner: context.repo.owner,
     repo: context.repo.repo,
-    issue_number: issue,
+    issue_number: payload.pull_request.number,
     per_page: 100,
   });
 
