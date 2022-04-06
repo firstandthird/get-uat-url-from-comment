@@ -14,7 +14,7 @@ async function Runner() {
   const { data: comments } = await octokit.rest.issues.listComments({
     owner: context.repo.owner,
     repo: context.repo.repo,
-    issue_number: payload.pull_request.number,
+    issue_number: context.payload.pull_request.number,
     per_page: 100,
   });
 
