@@ -22,6 +22,9 @@ async function Runner() {
     .map((comment) => comment.body)
     .find((comment) => comment.includes(searchDomain));
 
+
+    console.log("Matched comment", matchingComment);
+
   if (typeof matchingComment !== "string" && matchingComment.length > 0) {
     setOutput("url", "");
     return;
