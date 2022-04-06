@@ -22,7 +22,9 @@ async function Runner() {
     .map((comment) => comment.body)
     .find((comment) => comment.includes(searchDomain));
 
-  const [url] = matchingComment.match(/(http?:\/\/[^\s]+)/gi);
+  const [url] = matchingComment.match(
+    /^\[([\w\s\d]+)\]\((https?:\/\/[\w\d./?=#]+)\)$/gi
+  );
 
   setOutput("url", url ?? "");
 }
