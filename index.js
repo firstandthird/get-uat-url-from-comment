@@ -1,5 +1,5 @@
 const { getInput, info, setOutput } = require("@actions/core");
-const { GitHub, context } = require("@actions/github");
+const github = require("@actions/github");
 
 async function Runner() {
   const token = getInput("github-token");
@@ -7,7 +7,9 @@ async function Runner() {
 
   info(`Looking for comments that contain urls matching: ${searchDomain}`);
 
-  const octokit = new GitHub(token);
+  const octokit = github.getOctokit(token);
+
+  const context = github.context;
 
   const { data: comments } = await octokit.issues.listComments({
     owner: context.repo.owner,
