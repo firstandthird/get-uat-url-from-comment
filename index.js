@@ -11,7 +11,7 @@ async function Runner() {
 
   const context = github.context;
 
-  const { data: comments } = await octokit.issues.listComments({
+  const { data: comments } = await octokit.rest.issues.listComments({
     owner: context.repo.owner,
     repo: context.repo.repo,
     issue_number: payload.pull_request.number,
