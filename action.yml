@@ -19,5 +19,8 @@ outputs:
   url:
     description: The first found url in comments. Will be empty if none found.
 runs:
-  using: node16
-  main: index.js
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.search-domain }}
+    - ${{ inputs.github-token }}
