@@ -1,5 +1,5 @@
-import { getInput, info, setOutput } from "@actions/core";
-import { GitHub, context } from "@actions/github";
+const { getInput, info, setOutput } = require("@actions/core");
+const { GitHub, context } = require("@actions/github");
 
 async function Runner() {
   const token = getInput("github-token");
