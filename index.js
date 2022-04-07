@@ -11,16 +11,29 @@ async function Runner() {
 
   const context = github.context;
 
+  const issueNumber =
+    context?.payload?.pull_request?.number || context?.payload?.issue?.number;
+
+  if (!issueNumber) {
+    console.log("No issue or pull request found");
+    setOutput("url", url ?? "");
+    return;
+  }
+
   const { data: comments } = await octokit.rest.issues.listComments({
     owner: context.repo.owner,
     repo: context.repo.repo,
-    issue_number: context.payload.pull_request.number,
+    issue_number: issueNumber,
     per_page: 100,
   });
+
+  console.log("All Comments", comments);
 
   const matchingComment = comments
     .map((comment) => comment.body)
     .find((comment) => comment.includes(searchDomain));
+
+  console.log("Matching Comment", matchingComment);
 
   if (typeof matchingComment !== "string") {
     setOutput("url", "");
