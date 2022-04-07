@@ -18,12 +18,10 @@ async function Runner() {
     per_page: 100,
   });
 
-  const [matchingComment] = comments
+  const matchingComment = comments
     .map((comment) => comment.body)
     .find((comment) => comment.includes(searchDomain));
 
-
-    console.log("Matched comment", matchingComment, comments);
 
   if (typeof matchingComment !== "string" && matchingComment.length > 0) {
     setOutput("url", "");
