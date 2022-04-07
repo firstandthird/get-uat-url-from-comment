@@ -31,6 +31,8 @@ async function Runner() {
     /^\[([\w\s\d]+)\]\((https?:\/\/[\w\d./?=#]+)\)$/gi
   ) || [""];
 
+  console.log("Found url:", url ?? "NO URL FOUND");
+
   setOutput("url", url ?? "");
 }
 
