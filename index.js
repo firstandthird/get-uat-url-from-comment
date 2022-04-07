@@ -41,7 +41,7 @@ async function Runner() {
   }
 
   const [url] = matchingComment?.match(
-    /^\[([\w\s\d]+)\]\((https?:\/\/[\w\d./?=#]+)\)$/gi
+    /https?:\/\/([\w+?\.\w+])+([a-zA-Z0-9\~\!\@\#\$\%\^\&\*\(\)_\-\=\+\\\/\?\.\:\;\'\,]*)?/gi
   ) || [""];
 
   console.log("Found url:", url ?? "NO URL FOUND");
